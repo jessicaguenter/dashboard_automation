@@ -49,7 +49,7 @@ const TICKETS = {
     "createdate",
     "closed_date",
     "first_agent_reply_date",
-  ], //hs_pipeline_stage = Ticket status,
+  ], // hs_pipeline_stage = Ticket status,
   querySheetName: "Tickets Raw Data",
   itemMapper: mapHsObjects,
 }; // Pipelines: New: 1, In progress: 2, Paused by them: 96739990, Resolved: 4, Abandoned: 100760865, RMA Approved & Incoming: 1022989598, RMA Under Investigation: 1022989599, RMA Resolved: 1022989600

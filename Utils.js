@@ -1,6 +1,6 @@
 /**------------------------------- ALERT UTILS -------------------------------**/
 /**
- * Sends an email with given subject and body to email in ALERT_RECIPIENT PROPERTY
+ * Sends an email with given subject and body to email in ALERT_RECIPIENT PROPERTY.
  */
 const emailAlert = (subject, body) => {
   const recipient =
@@ -41,10 +41,6 @@ function havocInvoiceQueryString() {
   );
   return `/query?query=${query}`;
 }
-// function havocInvoiceQueryString() {
-//   const query = encodeURIComponent("SELECT * FROM Invoice MAXRESULTS " + MAX_RESULTS);
-//   return `/query?query=${query}`;
-// }
 function transactionDetailQueryString() {
   const query = encodeURIComponent("SELECT * FROM ");
 }
@@ -125,7 +121,7 @@ const qbGetOrMakeSheet = (sheetName, isPeriodic) => {
           ["Week Start Date", "Week End Date", "Period", "Period Value"],
         ]);
     }
-    sheet.getRange(1, 1).setValue("Date"); //Not used, only kept to avoid empty range errors.
+    sheet.getRange(1, 1).setValue("Date"); // Not used, only kept to avoid empty range errors.
   }
   return sheet;
 };

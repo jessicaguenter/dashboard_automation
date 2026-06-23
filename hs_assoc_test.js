@@ -11,6 +11,7 @@ const DEAL_LINEITEM_ASSOC = {
   assocItem: "line items",
   mapper: hsAssocMapper,
 };
+
 const COMPANY_DEAL_ASSOC = {
   name: "CompanyDealAssociations",
   apiUrl: "/objects/companies?associations=deals",
@@ -20,6 +21,7 @@ const COMPANY_DEAL_ASSOC = {
   assocItem: "deals",
   mapper: hsAssocMapper,
 };
+
 const COMPANY_CONTACT_ASSOC = {
   name: "CompanyContactAssociations",
   apiUrl: "/objects/companies?associations=contacts",
@@ -29,6 +31,7 @@ const COMPANY_CONTACT_ASSOC = {
   assocItem: "contacts",
   mapper: hsAssocMapper,
 };
+
 const CONTACT_DEAL_ASSOC = {
   name: "ContactDealAssociations",
   apiUrl: "/objects/contacts?associations=deals",
@@ -38,6 +41,7 @@ const CONTACT_DEAL_ASSOC = {
   assocItem: "deals",
   mapper: hsAssocMapper,
 };
+
 const DEAL_INVOICE_ASSOC = {
   name: "DealInvoiceAssociations",
   apiUrl: "/objects/deals?associations=invoices",
@@ -47,6 +51,7 @@ const DEAL_INVOICE_ASSOC = {
   assocItem: "invoices",
   mapper: hsAssocMapper,
 };
+
 const CONTACT_CONVERSATION_ASSOC = {
   name: "ContactConversationAssociations",
   apiUrl: "/objects/contacts?associations=conversations",
@@ -56,6 +61,7 @@ const CONTACT_CONVERSATION_ASSOC = {
   assocItem: "conversations",
   mapper: hsAssocMapper,
 };
+
 const CALL_CONTACT_ASSOC = {
   name: "CallContactAssociations",
   apiUrl:
@@ -72,6 +78,7 @@ const CALL_CONTACT_ASSOC = {
   assocItem: "contacts",
   mapper: noteCompanyAssocMapper,
 };
+
 const NOTE_CONTACT_ASSOC = {
   name: "NoteContactAssociations",
   apiUrl:
@@ -88,6 +95,7 @@ const NOTE_CONTACT_ASSOC = {
   assocItem: "contacts",
   mapper: noteCompanyAssocMapper,
 };
+
 // const NOTE_COMPANY_ASSOC = {
 // 	name: "NoteCompanyAssociations",
 // 	apiUrl: "/objects/notes?properties=hs_note_body,hubspot_owner_id&associations=companies",
@@ -97,6 +105,7 @@ const NOTE_CONTACT_ASSOC = {
 // 	assocItem: "companies",
 // 	mapper: noteCompanyAssocMapper
 // }
+
 // const DEAL_COMPANY_ASSOC = {
 // 	name: "DealCompanyAssociations",
 // 	apiUrl: "/objects/deals?associations=companies",
@@ -105,6 +114,7 @@ const NOTE_CONTACT_ASSOC = {
 // 	objName: "email",
 // 	assocItem: "conversations",
 // }
+
 // const CONTACT_CONVERSATION_ASSOC = {
 // 	name: "ContactConversationAssociations",
 // 	apiUrl: "/objects/contacts?associations=conversations",

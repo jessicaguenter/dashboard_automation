@@ -421,6 +421,7 @@ function getAccountsByNumPrefix(prefix) {
   return acctIds;
 }
 const BUDGET_ACCOUNTS = ["60", "61", "62", "63", "64"];
+
 function getAcctDetailsById() {
   const service = getQuickbooksService();
   const startDate = new Date("2021-01-01");
@@ -441,7 +442,6 @@ function getAcctDetailsById() {
   if (!testService(service)) return;
   const realmId =
     PropertiesService.getScriptProperties().getProperty("QBO_REALM_ID");
-  // const acctIdPrefixes = ["63"];
   const accts = [];
   for (const acctPrefix of BUDGET_ACCOUNTS) {
     const acctIds = getAccountsByNumPrefix(acctPrefix);
@@ -458,16 +458,16 @@ function getAcctDetailsById() {
       reportsQueryString(startDate, endDate) +
       "&account=" +
       acct;
-    // const url = QUICKBOOKS_URL + realmId + "/reports/TransactionDetailByAccount?accountid=" + acct;
     Logger.log(url);
     let data = quickbooksFetch(url, service);
     Logger.log(data);
-    // const updateDateSheet = qbGetOrMakeSheet(UPDATE_DATE_SHEET.name, false);
-    // updateDateSheet.getRange(5,5).setValue(JSON.stringify(data, null, 2).substring(0, 45000));
     if (Object.keys(data.Rows).length > 0) {
       const acctName =
         data.Rows.Row[0].Rows.Row[0].Rows.Row[0].Header.ColData[0].value;
       const transactions = data.Rows.Row[0].Rows.Row[0].Rows.Row[0].Rows.Row;
+      // updated endpoint
+      // const acctName =
+      // data.Rows.Row[3].Rows.Row[0].Header.ColData[0].value;
       for (const transaction of transactions) {
         const transactionDetails = transaction.ColData.map((x) => x.value);
         transactionDetails[0] = new Date(transactionDetails[0]);

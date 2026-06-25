@@ -62,6 +62,7 @@ const HAVOC_INVOICES = Object.freeze({
   uriPath: "",
   mapItems: mapInvoiceItem,
 });
+
 // const TRANSACTION_DETAILS = Object.freeze({
 //   name: "TransactionDetailByAccount",
 //   queryString: transactionDetailQueryString,

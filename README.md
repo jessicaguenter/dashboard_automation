@@ -12,5 +12,5 @@ This project contains files that pull from the HubSpot and QuickBooks API to dyn
 
 > To succesfully execute the scripts, you must configure:
 > **OAuth2 Extension**
-> **API Credentials**
+> & **API Credentials**
 

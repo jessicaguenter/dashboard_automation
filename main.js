@@ -40,6 +40,7 @@ function runPAndL() {
   fetchAndInputQBReport(P_AND_L);
   // updateLastUpdatedDate();
 }
+
 // function runVendors(){ //Manually run in case data needs to be re-fetched. Vendors is wrong item to fetch, fetching billpayments instead
 //   fetchAndInputQBReport(VENDORS);
 //   updateLastUpdatedDate();
@@ -72,5 +73,5 @@ function fetchAllAssociations() {
     CONTACT_CONVERSATION_ASSOC,
     DEAL_INVOICE_ASSOC,
   ])
-    fetchAssociations(report);
+  fetchAssociations(report);
 }

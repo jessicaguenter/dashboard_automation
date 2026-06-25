@@ -14,9 +14,6 @@ function quickBooksRequest(url, service) {
   }
 }
 
-// function testCustomerSales() {
-//   fetchCustomerIncome(INCOME_BY_CUSTOMER);
-// }
 /**
  * Helper function that returns the QB Realm ID.
  */
@@ -88,15 +85,12 @@ function fetchAndInputQBReport(report) {
 
   // Stores data that will end up on the output sheet.
   let results = [];
-
-  //gets sheet, or creates and sets ups new sheet.
+  // Gets sheet, or creates and sets ups new sheet.
   sheet = qbGetOrMakeSheet(report.name, PERIODIC);
 
   // Get headers that are already on the sheet.
   const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-  // Logger.log("headers: " +headers);
   // loop for weeks in year from Jan 1 to previous week.
-  // let [today, startDate, endDate, currYear, reportYear, currMonth, reportMonth, week] = initializeDates();
   let [today, startDate, endDate, week] = initializeDates(
     new Date().getFullYear() - YEARS_TO_FETCH,
   );
@@ -107,10 +101,9 @@ function fetchAndInputQBReport(report) {
     week++;
     // check for year rollover
     const isYearEnd = endDate.getFullYear() > startDate.getFullYear();
-    //if year rollover, set end date to Dec 31.
+    // if year rollover, set end date to Dec 31.
     if (isYearEnd) endDate = getYearEndDate(startDate);
     // get week data.
-    // Logger.log(`Week report. Start Date: ${startDate}, End Date: ${endDate}, Week: ${week}`);
     fetchDataInRange(
       report,
       headers,
@@ -124,7 +117,6 @@ function fetchAndInputQBReport(report) {
     );
     Utilities.sleep(150);
     // get quarter end date if it falls in the week, returns undefined if not
-    // Logger.log(`Test if ${endDate} + 7, or ${new Date(endDate.getTime() + (7 * 24 * 60 * 60 * 1000))}, is less than ${today}`);
     const quarterEndDate =
       findIfQuarterEnd(startDate, endDate, quarters) ||
       (endDate.getTime() + 7 * 24 * 60 * 60 * 1000 >= today.getTime()
@@ -152,7 +144,6 @@ function fetchAndInputQBReport(report) {
     if (isYearEnd) {
       const yearStartDate = getYearStartDate(startDate);
       week++;
-      // Logger.log(`Year end. Start Date: ${yearStartDate}, End Date: ${endDate}, Week: ${week}`)
       fetchDataInRange(
         report,
         headers,
@@ -210,7 +201,6 @@ const fetchDataInRange = (
 
   const allItems = [];
   recursiveDataExtract(data.Rows.Row, allItems);
-  // Logger.log(allItems);
 
   mapAndInsertItems(
     allItems,
@@ -232,13 +222,10 @@ function fetchAndInputAccounts(report) {
   const realmId =
     PropertiesService.getScriptProperties().getProperty("QBO_REALM_ID");
   let results = [];
-  // const headers = [];
 
   sheet = qbGetOrMakeSheet(report.name, NOT_PERIODIC);
   const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-  // for (const row of colValues){
-  // headers.push(row[0]);
-  // }
+
   if (sheet.getLastRow() - 1 > 0) {
     results = sheet
       .getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn())
@@ -271,7 +258,6 @@ function testFetchAndInputAccounts(report) {
   const realmId =
     PropertiesService.getScriptProperties().getProperty("QBO_REALM_ID");
   let results = [];
-  // const headers = [];
 
   sheet = qbGetOrMakeSheet(report.name, NOT_PERIODIC);
   const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
@@ -307,10 +293,9 @@ function fetchAndInputAllBillPayments(report) {
   const realmId =
     PropertiesService.getScriptProperties().getProperty("QBO_REALM_ID");
   let results = [];
-  // const headers = [];
 
   sheet = qbGetOrMakeSheet(report.name, NOT_PERIODIC);
-  const headers = ["date", "name", "CAD"]; //sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const headers = ["date", "name", "CAD"]; 
 
   let startPos = START_POSITION;
   let next = true;
@@ -343,7 +328,6 @@ function fetchAndInputAllBillPayments(report) {
     startPos += MAX_RESULTS;
     Utilities.sleep(150);
   } while (next);
-  // mapAndInsertItems(allItems, report.mapItems, headers, results, new Date());
   sheet.clear();
   addToSheet(sheet, headers, results);
 }
@@ -357,10 +341,9 @@ function fetchAndInputHavocInvoices(report) {
   const realmId =
     PropertiesService.getScriptProperties().getProperty("QBO_REALM_ID");
   let results = [];
-  // const headers = [];
 
   sheet = qbGetOrMakeSheet(report.name, NOT_PERIODIC);
-  const headers = ["date", "name", "CAD", "Balance"]; //sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const headers = ["date", "name", "CAD", "Balance"]; 
 
   let startPos = START_POSITION;
   let next = true;
@@ -391,7 +374,6 @@ function fetchAndInputHavocInvoices(report) {
     startPos += MAX_RESULTS;
     Utilities.sleep(150);
   } while (next);
-  // mapAndInsertItems(allItems, report.mapItems, headers, results, new Date());
   sheet.clear();
   addToSheet(sheet, headers, results);
 }
@@ -415,7 +397,6 @@ function getAccountsByNumPrefix(prefix) {
           " MAXRESULTS " +
           MAX_RESULTS,
       );
-    // Logger.log(url);
     let data;
     try {
       data = quickbooksFetch(url, service);
@@ -440,6 +421,7 @@ function getAccountsByNumPrefix(prefix) {
   return acctIds;
 }
 const BUDGET_ACCOUNTS = ["60", "61", "62", "63", "64"];
+
 function getAcctDetailsById() {
   const service = getQuickbooksService();
   const startDate = new Date("2021-01-01");
@@ -460,7 +442,6 @@ function getAcctDetailsById() {
   if (!testService(service)) return;
   const realmId =
     PropertiesService.getScriptProperties().getProperty("QBO_REALM_ID");
-  // const acctIdPrefixes = ["63"];
   const accts = [];
   for (const acctPrefix of BUDGET_ACCOUNTS) {
     const acctIds = getAccountsByNumPrefix(acctPrefix);
@@ -468,12 +449,8 @@ function getAcctDetailsById() {
     accts.push(...acctIds);
   }
   Logger.log("List of acct IDs: " + accts);
-  // const accts = getAccountsByNumPrefix("63");
   for (const acct of accts) {
-    // const acct = accts[0];
     Logger.log(acct);
-    // let startPos = START_POSITION;
-    // let next = true;
     const url =
       QUICKBOOKS_URL +
       realmId +
@@ -481,16 +458,16 @@ function getAcctDetailsById() {
       reportsQueryString(startDate, endDate) +
       "&account=" +
       acct;
-    // const url = QUICKBOOKS_URL + realmId + "/reports/TransactionDetailByAccount?accountid=" + acct;
     Logger.log(url);
     let data = quickbooksFetch(url, service);
     Logger.log(data);
-    // const updateDateSheet = qbGetOrMakeSheet(UPDATE_DATE_SHEET.name, false);
-    // updateDateSheet.getRange(5,5).setValue(JSON.stringify(data, null, 2).substring(0, 45000));
     if (Object.keys(data.Rows).length > 0) {
       const acctName =
         data.Rows.Row[0].Rows.Row[0].Rows.Row[0].Header.ColData[0].value;
       const transactions = data.Rows.Row[0].Rows.Row[0].Rows.Row[0].Rows.Row;
+      // updated endpoint
+      // const acctName =
+      // data.Rows.Row[3].Rows.Row[0].Header.ColData[0].value;
       for (const transaction of transactions) {
         const transactionDetails = transaction.ColData.map((x) => x.value);
         transactionDetails[0] = new Date(transactionDetails[0]);

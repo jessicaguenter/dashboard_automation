@@ -1,5 +1,5 @@
 const QB_CLIENT_ID =
-  PropertiesService.getScriptProperties().getProperty("QBO_CLT_ID"); // Get from Quickbooks Developer Console
+  PropertiesService.getScriptProperties().getProperty("QBO_CLT_ID");     // Get from Quickbooks Developer Console
 const QB_CLIENT_SECRET =
   PropertiesService.getScriptProperties().getProperty("QBO_CLT_SECRET"); // Get from Quickbooks Developer Console
 const QB_BASE_AUTH_URL = "https://appcenter.intuit.com/connect/oauth2";
@@ -54,7 +54,7 @@ function getQuickbooksService() {
     .setPropertyStore(PropertiesService.getScriptProperties());
 }
 /**
- * Handles the OAuth callback
+ * Handles the OAuth callback.
  */
 function qbAuthCallback(request) {
   const service = getQuickbooksService();
